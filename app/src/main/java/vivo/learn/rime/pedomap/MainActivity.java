@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
 
         option.setCoorType("bd09ll");
         option.setScanSpan(1000);
@@ -172,9 +172,10 @@ public class MainActivity extends AppCompatActivity {
             int sensorType = sensorEvent.sensor.getType();
             switch (sensorType) {
                 case Sensor.TYPE_STEP_COUNTER:
-                    mSensorText.setText(String.valueOf((int) sensorEvent.values[0]));
+//                    mSensorText.setText(String.valueOf((int) sensorEvent.values[0]));
                     break;
                 case Sensor.TYPE_STEP_DETECTOR:
+                    mSensorText.append(String.valueOf((int) sensorEvent.values[0]));
                     break;
                 default:
             }
@@ -205,7 +206,8 @@ public class MainActivity extends AppCompatActivity {
                     stringBuilder.append(bdLocation.getLocationDescribe());
                     stringBuilder.append(bdLocation.getDistrict() + "\n");
                     stringBuilder.append(bdLocation.getLocTypeDescription() + "\n");
-                    stringBuilder.append(String.valueOf(bdLocation.getSatelliteNumber()));
+                    stringBuilder.append(String.valueOf(bdLocation.getSatelliteNumber()) + "\n");
+                    stringBuilder.append(bdLocation.getLocationDescribe());
                     mBaiduLocationText.append(stringBuilder.toString());
                 }
             });
